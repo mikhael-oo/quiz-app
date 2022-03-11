@@ -51,17 +51,30 @@ export default function App() {
         })
     }
 
-    function tallyAndEndRound() {
-        setRoundOver(true)
+    
 
+    function endRound() {
+        setRoundOver(true)
+        tallyPoints()
     }
 
-    function goBack() {
+    function startOver() {
+        setRoundOver(false)
+        setReset(prev => !prev)
+        setCorrectAnswersNumber(0)
         setQuizPage(false)
     }
 
-    function incrementCorrectAnswer() {
-        setCorrectAnswersNumber(prev => prev + 1)
+    function tallyPoints() {
+        let points = 0
+        quizzes.forEach(question => {
+            question.answerOptions.forEach(answer => {
+                if (answer.isSelected && answer.isCorrect) {
+                    points++
+                }
+            })
+        })
+        setCorrectAnswersNumber(points)
     }
 
     function shuffleOptions(array) {
@@ -106,10 +119,19 @@ export default function App() {
                 :
                 <div>
                     {renderQuiz}
-                    <div className='end-section'>
-                        <button className="end-btn" onClick={goBack}>Check Answers</button>
-                    </div>
-                    
+
+                    {roundOver ? 
+                        <div className="end-section">
+                            <h1>You got {correctAnswersNumber} out of 10 right!</h1>
+                            <button className="end-btn" onClick={startOver}>Start Over</button>
+                        </div> 
+                        :
+                         <div>
+                            <div className='end-section'>
+                                <button className="end-btn" onClick={endRound}>Check Answers</button>
+                            </div>
+                         </div>
+                    }
                     
                 </div>
             }

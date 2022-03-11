@@ -44,7 +44,13 @@ hr {
 }
 
 .end-section {
-    text-align: center;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.end-section h1 {
+    margin-right: 10px;
 }
 
 .answer-btn {
@@ -65,14 +71,15 @@ hr {
     
 }
 
+.not-selected-btn,
 .correct-btn {
-    background-color: green;
-    color: white;
+    background-color: #9ad7a4;
 }
 
 .error-btn {
-    background-color: tomato;
-    color: white;
+    background-color: #f8bcbc;
+    opacity: 0.5;
+
 }
 
 .answer-options {

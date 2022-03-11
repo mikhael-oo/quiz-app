@@ -7,6 +7,7 @@ export default function Question(props) {
             <button 
             className={`answer-btn
                         ${props.roundOver && answer.isSelected && answer.isCorrect ? "correct-btn" : ""}
+                        ${props.roundOver && !answer.isSelected && answer.isCorrect ? "not-selected-btn" : ""}
                         ${props.roundOver && answer.isSelected && !answer.isCorrect ? "error-btn" : ""}
                         ${!props.roundOver && answer.isSelected  ? "selected-btn" : ""}`} 
             id={answer.id}
